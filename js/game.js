@@ -37,6 +37,7 @@ export default class Game{
             [2, 4, 6]
         ];
 
+    
         for (const combination of winningCombinations) {
             const [a, b, c] = combination;
 
