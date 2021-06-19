@@ -10,5 +10,5 @@ gameview.onTileClick = function(i) {
 };
 
 gameview.onRestartClick = function(){
-
+    console.log("Game is restarted!");
 };
