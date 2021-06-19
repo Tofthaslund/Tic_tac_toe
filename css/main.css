@@ -70,3 +70,9 @@
 .board__tile--winner {
     color: green;
 }
+
+@media only screen and (max-width:600px){
+    #app{
+        width: 100%;
+    }
+}
