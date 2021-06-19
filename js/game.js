@@ -9,11 +9,20 @@ export default class Game{
     }
 
     makeMove(i){
+        if (!this.isInProgress()) {
+            return;
+        }
+
+
         if (this.board[i]){
             return;
         }
         this.board[i] = this.turn;
-        this.nextTurn();
+
+        if (!this.findWinningCombination()) {
+            this.nextTurn();
+        }
+        
     }
 
     findWinningCombination(){
@@ -25,15 +34,21 @@ export default class Game{
             [1, 4, 7],
             [2, 5, 8],
             [0, 4, 8],
-            [2, 4, 6],
+            [2, 4, 6]
         ];
 
-        for (const combination of winningcombinations) {
+        for (const combination of winningCombinations) {
             const [a, b, c] = combination;
 
-            if (this.board[a] && (this.board[a] === this.board[b] && this.board[a] === this.board[c])){
-                
+            if (this.board[a] && (this.board[a] === this.board[b] && this.board[a] === this.board[c])) {
+                return combination;
             }
         }
+
+        return null;
+    }
+
+    isInProgress() {
+        return !this.findWinningCombination() && this.board.includes(null);
     }
 }
