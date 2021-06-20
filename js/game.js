@@ -4,6 +4,7 @@ export default class Game{
         this.board = new Array(9).fill(null);
     }
 
+    //Decides which turn it is 
     nextTurn(){
         this.turn = this.turn === "X" ? "0" : "X";
     }
@@ -24,7 +25,7 @@ export default class Game{
         }
         
     }
-
+    //what combinations that will win the game
     findWinningCombination(){
         const winningCombinations = [
             [0, 1, 2],
@@ -37,7 +38,7 @@ export default class Game{
             [2, 4, 6]
         ];
 
-    
+    //Function to pit winnging combinations together
         for (const combination of winningCombinations) {
             const [a, b, c] = combination;
 
@@ -48,7 +49,8 @@ export default class Game{
 
         return null;
     }
-
+    
+    //Check if a game is in progress
     isInProgress() {
         return !this.findWinningCombination() && this.board.includes(null);
     }

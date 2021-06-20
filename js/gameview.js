@@ -26,7 +26,8 @@ export default class GameView {
 
         this.onTileClick = undefined;
         this.onRestartClick = undefined;
-
+        
+        //Which game tile you click on, will be filled with a X or 0
         this.root.querySelectorAll(".board__tile").forEach(tile => {
             tile.addEventListener("click", () => {
                 if (this.onTileClick){
@@ -37,6 +38,7 @@ export default class GameView {
             
         });
 
+        //Function to restart game 
         this.root.querySelector(".header__restart").addEventListener("click", () => {
             if (this.onRestartClick) {
                 this.onRestartClick();
@@ -45,17 +47,19 @@ export default class GameView {
         });
     }
 
-
+    //Game updates
     update(game) {
         this.updateTurn(game);
         this.updateStatus(game);
         this.updateBoard(game);
 
     }
+    //Who's turn it is
     updateTurn(game){
         this.root.querySelector(".header__turn").textContent = `${game.turn}'s turn`;
     }
 
+    //If a game is in progress, who the winner is or if it's a tie
     updateStatus(game){
         let status = "In Progress";
 
@@ -67,6 +71,7 @@ export default class GameView {
 
         this.root.querySelector(".header__status").textContent = status;
     }
+    
     
     updateBoard(game){
         const winningCombination = game.findWinningCombination();
